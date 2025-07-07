@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free BI SEO Dashboard Trial for Venice, CA | Holistic Growth Marketing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.11.4/dist/ScrollTrigger.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #0f3460, #0a2342);
+            background-size: 400% 400%;
+            animation: gradient 20s ease infinite;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        @keyframes gradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .mega-menu {
+            transform: translateY(-100%);
+            transition: transform 0.5s ease;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(15px);
+            padding-top: 4rem;
+            pointer-events: none;
+        }
+        .mega-menu.active {
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .menu-item-nav {
+            position: relative;
+            padding: 0.5rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .menu-item-nav:hover::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+        }
+        .menu-item-nav:hover {
+            transform: translateY(-2px);
+            color: #38bdf8;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9, #8b5cf6);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+        }
+        .submenu-item, .footer-link {
+            transition: all 0.3s ease;
+            color: #cbd5e1;
+        }
+        .submenu-item:hover, .footer-link:hover {
+            transform: translateX(4px);
+            color: #38bdf8;
+        }
+        .canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.2;
+        }
+        footer .canvas-container { opacity: 0.15; }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8, #8b5cf6);
+            background-clip: text;
+            color: transparent;
+        }
+        .hamburger-line {
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #38bdf8, #8b5cf6);
+            margin: 4px 0;
+            transition: all 0.3s ease;
+        }
+        .mega-menu.active .hamburger-line-1 { transform: rotate(45deg) translate(5px, 5px); }
+        .mega-menu.active .hamburger-line-2 { opacity: 0; }
+        .mega-menu.active .hamburger-line-3 { transform: rotate(-45deg) translate(5px, -5px); }
+        .card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(51, 65, 85, 0.6));
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3);
+        }
+        .section-reveal { opacity: 0; transform: translateY(50px); }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #38bdf8, #8b5cf6); border-radius: 6px; }
+        .animate-marquee { animation: marquee 25s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="bg-slate-800/90 backdrop-blur-md text-white py-4 px-6 flex justify-between items-center fixed top-0 w-full z-50 h-16">
+        <a href="https://www.holisticgrowthmarketing.com/" class="text-xl font-bold gradient-text flex items-center">
+            <svg class="h-6 w-6 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+            </svg>Holistic Growth Marketing
+        </a>
+        <nav class="hidden md:flex">
+            <ul class="flex space-x-4">
+                <li><span class="menu-item-nav text-sm font-medium" data-menu="services">Services</span></li>
+                <li><span class="menu-item-nav text-sm font-medium" data-menu="industries">Industries</span></li>
+                <li><span class="menu-item-nav text-sm font-medium" data-menu="locations">Locations</span></li>
+                <li><span class="menu-item-nav text-sm font-medium" data-menu="resources">Resources</span></li>
+                <li><span class="menu-item-nav text-sm font-medium" data-menu="tools">Tools</span></li>
+                <li><span class="menu-item-nav text-sm font-medium" data-menu="company">Company</span></li>
+            </ul>
+        </nav>
+        <div class="flex items-center">
+            <a href="https://www.holisticgrowthmarketing.com/contact" class="btn-primary px-4 py-2 rounded-md text-sm font-medium">Get Started</a>
+            <button id="hamburger-menu" class="md:hidden p-2 z-50" aria-expanded="false">
+                <span class="hamburger-line hamburger-line-1"></span><span class="hamburger-line hamburger-line-2"></span><span class="hamburger-line hamburger-line-3"></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mega-menu fixed inset-0 z-40" id="mega-menu-content-wrapper">
+        <div class="canvas-container" id="menu-background"></div>
+        <div class="container mx-auto px-4 py-6 z-10 h-full flex flex-col">
+            <div class="flex justify-end mb-4">
+                <button class="close-btn text-white p-2 rounded-full bg-slate-700/50 hover:bg-sky-500/50">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex-grow overflow-y-auto custom-scrollbar">
+                <div class="menu-content hidden" id="services-menu">
+                    <h2 class="text-3xl font-bold gradient-text mb-6">Our Services</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">SEO Services</h3>
+                            <ul class="space-y-2 text-sm" id="services-seo-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Content & Digital</h3>
+                            <ul class="space-y-2 text-sm" id="services-content-digital-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Data & Web</h3>
+                            <ul class="space-y-2 text-sm" id="services-data-web-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Optimization</h3>
+                            <ul class="space-y-2 text-sm" id="services-optimization-mgmt-links"></ul>
+                            <a href="https://www.holisticgrowthmarketing.com/services" class="mt-3 text-sky-400 text-sm">All Services →</a>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-6 border-t border-slate-700">
+                        <h3 class="text-2xl font-bold gradient-text mb-6">Dashboards & Demos</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="card p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-teal-300 mb-3">SEO Dashboard</h4>
+                                <p class="text-slate-300 text-sm mb-4">Track keyword rankings, organic traffic, and SEO health.</p>
+                                <div class="flex space-x-3">
+                                    <a href="/demo/marketing-dashboard" class="flex-1 text-center bg-teal-600 hover:bg-teal-500 text-white py-2 rounded-lg text-sm">View Demo</a>
+                                    <a href="#try-free-seo" class="flex-1 text-center btn-primary py-2 rounded-lg text-sm">Try Free</a>
+                                </div>
+                            </div>
+                            <div class="card p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-teal-300 mb-3">Marketing ROI</h4>
+                                <p class="text-slate-300 text-sm mb-4">Measure ROI, CPL, and campaign effectiveness.</p>
+                                <div class="flex space-x-3">
+                                    <a href="#view-demo-roi" class="flex-1 text-center bg-teal-600 hover:bg-teal-500 text-white py-2 rounded-lg text-sm">View Demo</a>
+                                    <a href="#try-free-roi" class="flex-1 text-center btn-primary py-2 rounded-lg text-sm">Try Free</a>
+                                </div>
+                            </div>
+                            <div class="card p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-teal-300 mb-3">BI Analytics</h4>
+                                <p class="text-slate-300 text-sm mb-4">Integrate data for strategic insights.</p>
+                                <div class="flex space-x-3">
+                                    <a href="#view-demo-bi" class="flex-1 text-center bg-teal-600 hover:bg-teal-500 text-white py-2 rounded-lg text-sm">View Demo</a>
+                                    <a href="#try-free-bi" class="flex-1 text-center btn-primary py-2 rounded-lg text-sm">Try Free</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-content hidden" id="industries-menu">
+                    < h2 class="text-3xl font-bold gradient-text mb-6">Industries</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Construction</h3>
+                            <ul class="space-y-2 text-sm" id="industries-construction-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Professional</h3>
+                            <ul class="space-y-2 text-sm" id="industries-professional-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Other Sectors</h3>
+                            <ul class="space-y-2 text-sm" id="industries-other-links"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-content hidden" id="locations-menu">
+                    <h2 class="text-3xl font-bold gradient-text mb-6">Locations</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Los Angeles</h3>
+                            <ul class="space-y-2 text-sm" id="locations-la-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">East Coast</h3>
+                            <ul class="space-y-2 text-sm" id="locations-east-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Central/South</h3>
+                            <ul class="space-y-2 text-sm" id="locations-central-south-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">More Cities</h3>
+                            <ul class="space-y-2 text-sm" id="locations-more-links"></ul>
+                            <a href="https://www.holisticgrowthmarketing.com/locations" class="mt-3 text-sky-400 text-sm">All Locations →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-content hidden" id="resources-menu">
+                    <h2 class="text-3xl font-bold gradient-text mb-6">Resources</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Learn</h3>
+                            <ul class="space-y-2 text-sm" id="resources-learn-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Articles</h3>
+                            <ul class="space-y-2 text-sm" id="resources-articles-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Guides</h3>
+                            <ul class="space-y-2 text-sm" id="resources-guides-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Topics</h3>
+                            <ul class="space-y-2 text-sm" id="resources-topics-links"></ul>
+                            <a href="https://www.holisticgrowthmarketing.com/resources" class="mt-3 text-sky-400 text-sm">All Resources →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-content hidden" id="tools-menu">
+                    <h2 class="text-3xl font-bold gradient-text mb-6">Tools</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Content</h3>
+                            <ul class="space-y-2 text-sm" id="tools-content-analysis-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Development</h3>
+                            <ul class="space-y-2 text-sm" id="tools-dev-utility-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">AI</h3>
+                            <ul class="space-y-2 text-sm" id="tools-ai-automation-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">SEO</h3>
+                            <ul class="space-y-2 text-sm" id="tools-seo-specific-links"></ul>
+                            <a href="https://www.holisticgrowthmarketing.com/tools/seo-toolbox" class="mt-3 text-sky-400 text-sm">SEO Toolbox →</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-content hidden" id="company-menu">
+                    <h2 class="text-3xl font-bold gradient-text mb-6">Company</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">About</h3>
+                            <ul class="space-y-2 text-sm" id="company-about-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Work</h3>
+                            <ul class="space-y-2 text-sm" id="company-work-links"></ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-sky-400 mb-3">Connect</h3>
+                            <ul class="space-y-2 text-sm" id="company-connect-links"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="pt-16">
+        <section class="py-20 relative">
+            <div class="container mx-auto px-6 text-center">
+                <p class="text-sm font-semibold text-indigo-400 uppercase mb-4">For Venice, CA Businesses</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">Free 7-Day BI SEO Dashboard Trial!</h1>
+                <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-8">Optimize your online presence in Venice, CA.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#trial-signup" class="btn-primary px-6 py-3 rounded-full text-lg font-semibold">Start Free Trial</a>
+                    <a href="#sample-dashboard" class="bg-slate-700 hover:bg-slate-600 text-indigo-300 px-6 py-3 rounded-full text-lg font-semibold">Live Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="sample-dashboard" class="py-20 bg-slate-900/80">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 section-reveal">
+                    <h2 class="text-4xl font-bold gradient-text mb-4">Dashboard Preview</h2>
+                    <p class="text-lg text-slate-300 max-w-2xl mx-auto">Explore our BI SEO Dashboard for Venice.</p>
+                </div>
+                <div class="card max-w-4xl mx-auto p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-sky-400">Venice Business Overview</h3>
+                        <div class="flex space-x-2">
+                            <select id="date-range" class="bg-slate-700 border border-slate-600 rounded-md py-1 px-2 text-sm text-slate-100">
+                                <option value="30">Last 30 Days</option>
+                                <option value="90">Last 90 Days</option>
+                                <option value="180">Last 180 Days</option>
+                            </select>
+                            <button id="refresh-dashboard" class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-md text-sm">Refresh</button>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="card p-4">
+                            <p class="text-slate-400 text-sm">Organic Traffic</p>
+                            <p id="metric-traffic" class="text-2xl font-bold text-emerald-400">1,250</p>
+                            <p class="text-xs text-slate-400">↑ 15%</p>
+                        </div>
+                        <div class="card p-4">
+                            <p class="text-slate-400 text-sm">Top 3 Rankings</p>
+                            <p id="metric-rankings" class="text-2xl font-bold text-sky-400">18</p>
+                            <p class="text-xs text-slate-400">↑ 3 keywords</p>
+                        </div>
+                        <div class="card p-4">
+                            <p class="text-slate-400 text-sm">Local Visibility</p>
+                            <p id="metric-local" class="text-2xl font-bold text-purple-400">85%</p>
+                            <p class="text-xs text-slate-400">↑ 5%</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="card p-4">
+                            <h4 class="text-lg font-semibold text-slate-200 mb-2">Keyword Trends</h4>
+                            <div class="h-32 bg-slate-700/50 rounded-md flex items-center justify-center text-sky-400 text-sm">Chart Placeholder</div>
+                        </div>
+                        <div class="card p-4">
+                            <h4 class="text-lg font-semibold text-slate-200 mb-2">Traffic Sources</h4>
+                            <div class="h-32 bg-slate-700/50 rounded-md flex items-center justify-center text-sky-400 text-sm">Chart Placeholder</div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-6">
+                        <a href="#trial-signup" class="btn-primary px-6 py-3 rounded-full text-lg font-semibold">Start Free Trial</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 bg-slate-800/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 section-reveal">
+                    <h2 class="text-4xl font-bold gradient-text mb-4">Why Choose Us</h2>
+                    <p class="text-lg text-slate-300 max-w-2xl mx-auto">Tailored insights for Venice businesses.</p>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="space-y-6">
+                        <div class="card p-6 section-reveal">
+                            <h3 class="text-lg font-bold text-white mb-2">Local Insights</h3>
+                            <p class="text-slate-300 text-sm">Dominate Venice with targeted SEO data.</p>
+                        </div>
+                        <div class="card p-6 section-reveal">
+                            <h3 class="text-lg font-bold text-white mb-2">Actionable Data</h3>
+                            <p class="text-slate-300 text-sm">Clear SEO metrics to boost visibility.</p>
+                        </div>
+                        <div class="card p-6 section-reveal">
+                            <h3 class="text-lg font-bold text-white mb-2">Save Time</h3>
+                            <p class="text-slate-300 text-sm">Automate reports to focus on growth.</p>
+                        </div>
+                    </div>
+                    <div class="card p-6 section-reveal">
+                        <h3 class="text-xl font-bold text-white mb-4">Venice Impact</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-sky-400">25%+</div>
+                                <div class="text-slate-300 text-sm">Traffic Boost</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-emerald-400">15%</div>
+                                <div class="text-slate-300 text-sm">Cost Savings</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-purple-400">90%</div>
+                                <div class="text-slate-300 text-sm">Satisfaction</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-pink-400">Local</div>
+                                <div class="text-slate-300 text-sm">Edge</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trial-signup" class="py-20 bg-slate-900/70">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold gradient-text mb-6">Grow Your Venice Business</h2>
+                <p class="text-lg text-slate-300 max-w-2xl mx-auto mb-8">Free 7-day trial, no credit card needed.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://www.holisticgrowthmarketing.com/signup-trial" class="btn-primary px-6 py-3 rounded-full text-lg font-semibold">Start Free Trial</a>
+                    <a href="https://www.holisticgrowthmarketing.com/contact" class="bg-slate-700 hover:bg-slate-600 text-indigo-300 px-6 py-3 rounded-full text-lg font-semibold">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 relative">
+        <div class="canvas-container" id="footer-background"></div>
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div>
+                    <h5 class="text-sm font-semibold text-slate-200 mb-3">Services</h5>
+                    <ul class="space-y-1 text-xs" id="footer-services-links"></ul>
+                </div>
+                <div>
+                    <h5 class="text-sm font-semibold text-slate-200 mb-3">Resources</h5>
+                    <ul class="space-y-1 text-xs" id="footer-resources-links"></ul>
+                </div>
+                <div>
+                    <h5 class="text-sm font-semibold text-slate-200 mb-3">Tools</h5>
+                    <ul class="space-y-1 text-xs" id="footer-tools-links"></ul>
+                </div>
+                <div>
+                    <h5 class="text-sm font-semibold text-slate-200 mb-3">Contact</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="mailto:info@holisticgrowthmarketing.com" class="footer-link">Email Us</a></li>
+                        <li><a href="tel:+13239021031" class="footer-link">(323) 902-1031</a></li>
+                        <li><a href="https://maps.google.com/?q=Venice,CA90291" class="footer-link">Venice, CA</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 pt-6 flex justify-between items-center">
+                <div class="flex space-x-4">
+                    <a href="#" class="text-slate-500 hover:text-indigo-400"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg></a>
+                    <a href="#" class="text-slate-500 hover:text-indigo-400"><svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg></a>
+                </div>
+                <p class="text-xs text-slate-500"><span id="currentYear"></span> Holistic Growth Marketing.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-0 w-full bg-gradient-to-r from-sky-500 to-indigo-500 text-white py-3">
+        <div class="flex items-center whitespace-nowrap animate-marquee">
+            <div class="flex items-center space-x-6 mx-6">
+                <span class="text-sm font-semibold">Free 7-Day BI Dashboard Trial!</span>
+                <a href="#try-free-bi" class="bg-white text-indigo-600 px-4 py-2 rounded-full text-sm font-bold">Try Now!</a>
+            </div>
+            <div class="flex items-center space-x-6 mx-6">
+                <span class="text-sm font-semibold">Free 7-Day BI Dashboard Trial!</span>
+                <a href="#try-free-bi" class="bg-white text-indigo-600 px-4 py-2 rounded-full text-sm font-bold">Try Now!</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const baseUrl = "https://www.holisticgrowthmarketing.com";
+        const sitemapData = {
+            services: [{ path: '/services/search-engine-optimization', group: 'seo' }, { path: '/services/local-seo', group: 'seo' }, { path: '/services/content-marketing', group: 'content-digital' }, { path: '/services/business-intelligence', group: 'data-web' }, { path: '/services/conversion-rate-optimization', group: 'optimization-mgmt' }],
+            industries: [{ path: '/industries/residential-construction-seo', group: 'construction' }, { path: '/industries/finance-banking-seo', group: 'professional' }, { path: '/industries/healthcare-seo', group: 'other' }],
+            locations: [{ path: '/los-angeles-seo', group: 'la' }, { path: '/new-york-city-seo', group: 'east' }, { path: '/miami-seo', group: 'central-south' }, { path: '/chicago-seo', group: 'more' }],
+            resources: [{ path: '/resources/holistic-seo', group: 'learn' }, { path: '/resources/best-articles', group: 'articles' }, { path: '/resources/pricing', group: 'guides' }, { path: '/topic/content-marketing', group: 'topics' }],
+            tools: [{ path: '/tools/word-counter-plus', group: 'content-analysis' }, { path: '/tools/sitemap-analyzer', group: 'seo-specific' }, { path: '/tools/html-analyzer', group: 'dev-utility' }, { path: '/tools/ai-output-cleaner-tool', group: 'ai-automation' }],
+            company: [{ path: '/about-us', group: 'about' }, { path: '/our-mission', group: 'about' }, { path: '/contact', group: 'connect' }, { path: '/term/privacy-policy', group: 'connect' }]
+        };
+
+        function slugToTitle(slug, path) {
+            const overrides = {
+                '/services/google-business-seo': 'Google Business SEO',
+                '/los-angeles/hollywood-seo-services': 'Hollywood SEO Services',
+                '/term/privacy-policy': 'Privacy Policy'
+            };
+            if (overrides[path]) return overrides[path];
+            return slug.replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ').replace(/\bSeo\b/g, 'SEO');
+        }
+
+        function populateLinks(items, mappings) {
+            items.forEach(item => {
+                const slug = item.path.split('/').pop();
+                const title = item.title || slugToTitle(slug, item.path);
+                const container = document.getElementById(mappings[item.group]);
+                if (container) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${baseUrl}${item.path}" class="submenu-item">${title}</a>`;
+                    container.appendChild(li);
+                }
+            });
+        }
+
+        function populateFooterLinks(items, containerId, max = 5) {
+            const container = document.getElementById(containerId);
+            if (container) items.slice(0, max).forEach(item => {
+                const title = item.title || slugToTitle(item.path.split('/').pop(), item.path);
+                container.innerHTML += `<li><a href="${baseUrl}${item.path}" class="footer-link">${title}</a></li>`;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            populateLinks(sitemapData.services, { seo: 'services-seo-links', 'content-digital': 'services-content-digital-links', 'data-web': 'services-data-web-links', 'optimization-mgmt': 'services-optimization-mgmt-links' });
+            populateLinks(sitemapData.industries, { construction: 'industries-construction-links', professional: 'industries-professional-links', other: 'industries-other-links' });
+            populateLinks(sitemapData.locations, { la: 'locations-la-links', east: 'locations-east-links', 'central-south': 'locations-central-south-links', more: 'locations-more-links' });
+            populateLinks(sitemapData.resources, { learn: 'resources-learn-links', articles: 'resources-articles-links', guides: 'resources-guides-links', topics: 'resources-topics-links' });
+            populateLinks(sitemapData.tools, { 'content-analysis': 'tools-content-analysis-links', 'seo-specific': 'tools-seo-specific-links', 'dev-utility': 'tools-dev-utility-links', 'ai-automation': 'tools-ai-automation-links' });
+            populateLinks(sitemapData.company, { about: 'company-about-links', work: 'company-work-links', connect: 'company-connect-links' });
+            populateFooterLinks(sitemapData.services, 'footer-services-links');
+            populateFooterLinks(sitemapData.resources, 'footer-resources-links');
+            populateFooterLinks(sitemapData.tools, 'footer-tools-links');
+
+            const menuItems = document.querySelectorAll('.menu-item-nav');
+            const megaMenu = document.querySelector('.mega-menu');
+            const menuContents = document.querySelectorAll('.menu-content');
+            const hamburgerBtn = document.getElementById('hamburger-menu');
+            const closeBtn = megaMenu.querySelector('.close-btn');
+            let activeMenu = null;
+
+            function toggleMenu(menuId) {
+                const target = document.getElementById(menuId + '-menu');
+                if (megaMenu.classList.contains('active') && activeMenu === target) {
+                    megaMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    hamburgerBtn.setAttribute('aria-expanded', 'false');
+                    menuContents.forEach(c => c.style.display = 'none');
+                    activeMenu = null;
+                } else {
+                    megaMenu.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    hamburgerBtn.setAttribute('aria-expanded', 'true');
+                    menuContents.forEach(c => c.style.display = 'none');
+                    if (target) {
+                        target.style.display = 'block';
+                        gsap.from(target.querySelectorAll('.submenu-item, .card'), { opacity: 0, y: 20, stagger: 0.05, duration: 0.5 });
+                        activeMenu = target;
+                    }
+                }
+            }
+
+            menuItems.forEach(item => item.addEventListener('click', () => toggleMenu(item.dataset.menu)));
+            hamburgerBtn.addEventListener('click', () => toggleMenu(activeMenu?.id.replace('-menu', '') || menuItems[0].dataset.menu));
+            closeBtn.addEventListener('click', () => toggleMenu(null));
+            megaMenu.addEventListener('click', e => { if (e.target === megaMenu) toggleMenu(null); });
+
+            if (typeof THREE !== 'undefined') {
+                const menuScene = new THREE.Scene();
+                const menuCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const menuRenderer = new THREE.WebGLRenderer({ alpha: true });
+                menuRenderer.setSize(window.innerWidth, window.innerHeight);
+                document.getElementById('menu-background').appendChild(menuRenderer.domElement);
+                const particles = new THREE.Points(
+                    new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(2000 * 3).map(() => (Math.random() - 0.5) * 10), 3)),
+                    new THREE.PointsMaterial({ size: 0.01, color: 0x38bdf8, transparent: true, opacity: 0.6 })
+                );
+                menuScene.add(particles);
+                menuCamera.position.z = 5;
+                function animateMenu() {
+                    requestAnimationFrame(animateMenu);
+                    particles.rotation.y += 0.0001;
+                    menuRenderer.render(menuScene, menuCamera);
+                }
+                animateMenu();
+                window.addEventListener('resize', () => {
+                    menuCamera.aspect = window.innerWidth / window.innerHeight;
+                    menuCamera.updateProjectionMatrix();
+                    menuRenderer.setSize(window.innerWidth, window.innerHeight);
+                });
+
+                const footerScene = new THREE.Scene();
+                const footerCamera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const footerRenderer = new THREE.WebGLRenderer({ alpha: true });
+                footerRenderer.setSize(window.innerWidth, window.innerHeight);
+                document.getElementById('footer-background').appendChild(footerRenderer.domElement);
+                const footerParticles = new THREE.Points(
+                    new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(2000 * 3).map(() => (Math.random() - 0.5) * 8), 3)),
+                    new THREE.PointsMaterial({ size: 0.01, color: 0x6366f1, transparent: true, opacity: 0.7 })
+                );
+                footerScene.add(footerParticles);
+                footerCamera.position.z = 4;
+                let time = 0;
+                function animateFooter() {
+                    requestAnimationFrame(animateFooter);
+                    const positions = footerParticles.geometry.attributes.position.array;
+                    for (let i = 1; i < positions.length; i += 3) positions[i] = Math.sin(time + positions[i - 1] * 0.1) * 0.5;
+                    footerParticles.geometry.attributes.position.needsUpdate = true;
+                    footerParticles.rotation.y += 0.0001;
+                    time += 0.01;
+                    footerRenderer.render(footerScene, footerCamera);
+                }
+                animateFooter();
+                window.addEventListener('resize', () => {
+                    footerCamera.aspect = window.innerWidth / window.innerHeight;
+                    footerCamera.updateProjectionMatrix();
+                    footerRenderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                gsap.registerPlugin(ScrollTrigger);
+                gsap.utils.toArray('.section-reveal').forEach((el, i) => {
+                    gsap.fromTo(el, { opacity: 0, y: 50 }, {
+                        opacity: 1, y: 0, duration: 1, ease: "power3.out",
+                        scrollTrigger: { trigger: el, start: "top 80%", toggleActions: "play none none reverse" }, delay: i * 0.1
+                    });
+                });
+                gsap.utils.toArray('.card').forEach((card, i) => {
+                    gsap.fromTo(card, { opacity: 0, y: 50 }, {
+                        opacity: 1, y: 0, duration: 1, ease: "power3.out",
+                        scrollTrigger: { trigger: card, start: "top 85%", toggleActions: "play none none reverse" }, delay: i * 0.1
+                    });
+                });
+            }
+
+            const dashboardData = { '30': { traffic: '1,250', rankings: '18', local: '85%' }, '90': { traffic: '3,500', rankings: '25', local: '88%' }, '180': { traffic: '6,800', rankings: '32', local: '92%' } };
+            function updateDashboard() {
+                const range = document.getElementById('date-range').value;
+                const data = dashboardData[range];
+                document.getElementById('metric-traffic').textContent = data.traffic;
+                document.getElementById('metric-rankings').textContent = data.rankings;
+                document.getElementById('metric-local').textContent = data.local;
+            }
+            document.getElementById('date-range').addEventListener('change', updateDashboard);
+            document.getElementById('refresh-dashboard').addEventListener('click', updateDashboard);
+            updateDashboard();
+        });
+    </script>
+</body>
+</html>
